@@ -2,6 +2,7 @@ var app = new Vue({
   el : "#app",
   data : {
     ownId : '',
+    projectId : 0,
     msgs  : [],
     msg   : ''
   },
@@ -11,27 +12,37 @@ var app = new Vue({
         var data = {
           "text"  : this.msg,
           "user_id" : this.ownId,
-          "projectId" : this.projectId
+          "project_id" : this.projectId
         };
         var here = this;
+        console.log(data);
         axios.post("/intento_crm_jose/public/negociation/postNegociation", data).then(function(response){
+          console.log(data);
+
           here.msgs.push( data );
           here.msg = "";
+
+          console.log(response);
         });
       }
     }
   },
   beforeMount(){
-    var projectId = $("meta[name=projectid]").attr("value");
+    this.projectId = $("meta[name=projectid]").attr("value");
     this.ownId = $("meta[name=ownid]").attr("value");
 
     console.log( this.ownId );
 
     var here = this;
-    axios.get("/intento_crm_jose/public/negociation/getNegociations/" + projectId).then(function(data){
+    
+    axios.get("/intento_crm_jose/public/negociation/getNegociations/" + here.projectId).then(function(data){
       if( data ){
         here.msgs = data.data;
-        console.log( data.data );
+        
+        Echo.private("negociation." + here.ownId + "." + here.projectId )
+          .listen("BroadcastNegociation", (e)=>{
+            here.msgs.push(e);
+          });
       }
     });
   }
@@ -50,7 +61,7 @@ $(document).ready(function(){
     }
   });
   
-  var select=function(dateStr) {
+/*  var select=function(dateStr) {
     var d1 = $('#dateStart').datepicker('getDate');
     var d2 = $('#dateEnd').datepicker('getDate');
     var diff = 0;
@@ -77,6 +88,6 @@ $(document).ready(function(){
       function(selected) {
        $("#dateStart").datepicker("option","maxDate", selected)
     }
-  });  
+  });  */
   
 });

@@ -2,6 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="utf8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href=" {{ asset('css/main.css') }} " rel="stylesheet">
@@ -32,7 +33,7 @@
                 <i class="fas fa-bell my-2" style="font-size:350%; color:white"></i>
               </div>
               <div class="col-md-1 ">
-                <img src="{{ asset('uploads/' . Auth::user()->profile_picture) }}" height="50vh" width="50vw" class="rounded-circle my-2" alt="">
+                <img src="" height="50vh" width="50vw" class="rounded-circle my-2" alt="">
               </div>
               <div class="col-md-1 mt-2">
                 <form action="{{ route ('logout') }} " method="post">
@@ -81,9 +82,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css">
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src=" {{ asset('js/main.js') }} "></script>
+    <script src="{{ asset('js/app.js') }} "></script>
+    <script src="{{ asset('js/main.js') }} "></script>
   </body>
 </html>

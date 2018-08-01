@@ -9,7 +9,6 @@
 		<div class="card-body">
 			<ul class="negociations">
 				<li v-for="message in msgs" v-bind:class=" { right : ownId == message.user_id } ">
-				User @{{ message.user_id }} 
 				@{{message.text}}</li>
 			</ul>
 		</div>

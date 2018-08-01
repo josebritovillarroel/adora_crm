@@ -14,3 +14,7 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('negociation.{user_id}.{project_id}', function ($user, $user_id, $project_id) {
+    return $user->id === $user_id;
+});

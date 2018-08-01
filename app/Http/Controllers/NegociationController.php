@@ -31,7 +31,13 @@ class NegociationController extends Controller
         return $chats;
     }
 
-    public function postNegociation(){
-        return "Activo";
+    public function postNegociation(Request $request){
+        negociation::create([
+            "user_id"       => $request->user_id,
+            "project_id"    => $request->project_id,
+            "text"          => $request->text
+        ]);
+
+        return [];
     }
 }
